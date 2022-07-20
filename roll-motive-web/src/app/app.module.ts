@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { FlagDetailComponent } from './flag-detail/flag-detail.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FlagDetailComponent
   ],
   imports: [
     BrowserModule,
