@@ -1,0 +1,48 @@
+<main>
+  <header class="filters">
+    <nz-input-group [nzSuffix]="suffixIconSearch" class="search-input">
+      <input type="text" nz-input placeholder="Search by Name" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+    <button nz-button nzType="primary" class="create-btn">Create Flag</button>
+  </header>
+
+  <div class="content">
+    <nz-table #rowSelectionTable nzShowPagination [nzData]="flags">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Key</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+          <td>{{ data.name }}
+            <div>
+              <nz-tag *ngIf="data.tag">{{data.tag}}</nz-tag>
+            </div>
+          </td>
+          <td>
+            <kbd class="flag-key">{{ data.key }}</kbd>
+          </td>
+          <td>
+            {{ data.createdBy }}
+            <div class="sub-text">{{data.createdAt | date: 'medium'}}</div>
+          </td>
+          <td>
+            {{ data.updatedBy }}
+            <div class="sub-text">{{data.updatedAt | date: 'medium'}}</div>
+          </td>
+          <td>
+            <nz-switch [(ngModel)]="data.status" (ngModelChange)="onFlagStatusChanged($event, data.id)"></nz-switch>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</main>

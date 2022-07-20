@@ -1,15 +1,21 @@
 .header {
-    color: white;
-    height: 50px;
+  color: white;
+  height: 50px;
 
-    .logo {
-        font-size: 20px;
-        vertical-align: super;
-        font-family: system-ui;
-        font-weight: 900;
-    }
+  .logo {
+    font-size: 20px;
+    vertical-align: super;
+    font-family: system-ui;
+    font-weight: 900;
+  }
 }
 
 .layout {
-    height: calc(100vh - 50px);
+  height: calc(100vh - 50px);
 }
+
+// nz-sider {
+//   ul {
+//     color: white;
+//   }
+// }
