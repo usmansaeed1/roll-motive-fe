@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FeatureFlagsListComponent } from './list/list.component';
 import { FlagDetailComponent } from './flag-detail/flag-detail.component';
+import { DateAsAgoPipe } from './pipes/date-as-ago.pipe';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     FeatureFlagsListComponent,
     FlagDetailComponent,
+    DateAsAgoPipe,
   ],
   imports: [
     BrowserModule,

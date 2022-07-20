@@ -1,1 +1,15 @@
-<p>flag-detail works!</p>
+<div class="main">
+  <div class="summary">
+    <div>
+      <code class="flag-key">{{flagDetail.key}}</code>
+      <h2>Targeting</h2>
+      <nz-switch [(ngModel)]="flagDetail.status" (ngModelChange)="onFlagStatusChanged($event)" nzCheckedChildren="ON" nzUnCheckedChildren="OFF"></nz-switch>
+      <span class="updated-text">Updated {{flagDetail.updatedAt | dateAsAgo}}</span>
+    </div>
+
+    <div class="right-content">
+      <div class="bold">Added by: {{flagDetail.createdBy}}</div>
+      <div>{{flagDetail.createdAt | dateAsAgo}}</div>
+    </div>
+  </div>
+</div>

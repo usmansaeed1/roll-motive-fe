@@ -1,0 +1,32 @@
+.main {
+  .summary {
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 32px;
+    box-shadow: 0px 1px 2px rgb(46 46 46 / 20%);
+
+    .flag-key {
+      display: block;
+      background-color: #E6E6E6;
+      padding: 2px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+
+    .updated-text {
+      margin-left: 20px;
+      vertical-align: bottom;
+    }
+
+    .right-content {
+      text-align: end;
+      height: fit-content;
+      align-self: end;
+
+      .bold {
+        font-weight: 600;
+      }
+    }
+  }
+}
