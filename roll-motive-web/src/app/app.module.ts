@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NzButtonModule
+    NzButtonModule,
+    NzLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
