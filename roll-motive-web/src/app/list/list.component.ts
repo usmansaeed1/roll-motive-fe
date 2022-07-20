@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HeaderService } from '../header.service';
 
 export interface IFeatureFlag {
   id: number;
@@ -25,9 +27,10 @@ export class FeatureFlagsListComponent implements OnInit {
   public flags: IFeatureFlag[] = [];
   public listOfCurrentPageFlags: readonly IFeatureFlag[] = [];
   
-  constructor() { }
+  constructor(private router: Router, private headerService: HeaderService) { }
 
   ngOnInit(): void {
+    this.headerService.updateHeaderText('');
     this.flags = new Array(100).fill(0).map((_, index) => ({
       id: index,
       name: `Feature flag ${index}`,
@@ -44,5 +47,9 @@ export class FeatureFlagsListComponent implements OnInit {
 
   public onFlagStatusChanged(value: boolean, flagId: number) {
     console.log(value, flagId);
+  }
+
+  public create() {
+    this.router.navigate(['flag-detail']);
   }
 }
