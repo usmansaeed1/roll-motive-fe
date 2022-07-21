@@ -16,6 +16,10 @@
 .content {
   padding: 0 32px;
   margin-bottom: 50px;
+
+  .data-row {
+    cursor: pointer;
+  }
 }
 
 .sub-text {

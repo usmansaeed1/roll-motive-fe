@@ -57,8 +57,8 @@ export class FeatureFlagsListComponent implements OnInit {
     console.log(value, flagId);
   }
 
-  public create() {
-    this.router.navigate(['flag-detail']);
+  public navigateToDetail(featureFlag: IFeatureFlag) {
+    this.router.navigate(['flag-detail', featureFlag]);
   }
   
   public sortByCreated(direction: string | null) {

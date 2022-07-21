@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { HeaderService } from '../header.service';
+import { IFeatureFlag } from '../list/list.component';
 
 @Component({
   selector: 'flag-detail',
-  templateUrl: './flag-detail.component.html',
-  styleUrls: ['./flag-detail.component.scss']
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.scss']
 })
-export class FlagDetailComponent implements OnInit {
-  public flagDetail: any;
+export class DetailComponent implements OnInit {
+  public flagDetail: IFeatureFlag;
   public ruleAttribute: string = 'company_id';
   public ruleRelation: string = 'is_one_of';
   public ruleValue: boolean = true;
@@ -17,21 +19,24 @@ export class FlagDetailComponent implements OnInit {
   inputVisible = false;
   inputValue = '';
 
-  constructor(private headerService: HeaderService) { }
+  constructor(private headerService: HeaderService, private activatedRoute: ActivatedRoute,) {
+    const params: any = activatedRoute.snapshot.params;
+    this.flagDetail = params;
+  }
 
   ngOnInit(): void {
-    this.flagDetail = {
-      id: 2,
-      name: `Compliance Adverse Driving Conditions`,
-      key: `compliance-adverse-driving-conditions`,
-      targeting: true,
-      createdAt: new Date('2022-04-10T20:52:05.549Z'),
-      createdBy: 'Anas Siddiqi',
-      updatedAt: new Date('2022-06-20T20:52:05.549Z'),
-      updatedBy: 'Usman Saeed',
-      status: true,
-      tag: 'compliance',
-    };
+    // this.flagDetail = {
+    //   id: 2,
+    //   name: `Compliance Adverse Driving Conditions`,
+    //   key: `compliance-adverse-driving-conditions`,
+    //   targeting: true,
+    //   createdAt: new Date('2022-04-10T20:52:05.549Z'),
+    //   createdBy: 'Anas Siddiqi',
+    //   updatedAt: new Date('2022-06-20T20:52:05.549Z'),
+    //   updatedBy: 'Usman Saeed',
+    //   status: true,
+    //   tag: 'compliance',
+    // };
 
     this.headerService.updateHeaderText(this.flagDetail.name);
   }

@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of rowSelectionTable.data">
+        <tr class="data-row" *ngFor="let data of rowSelectionTable.data" (click)="navigateToDetail(data)">
           <td>{{ data.name }}
             <div>
               <nz-tag *ngIf="data.tag">{{data.tag}}</nz-tag>
@@ -39,7 +39,7 @@
             <div class="sub-text">{{data.updatedAt | date: 'medium'}}</div>
           </td>
           <td>
-            <nz-switch [(ngModel)]="data.status" (ngModelChange)="onFlagStatusChanged($event, data.id)"></nz-switch>
+            <nz-switch [(ngModel)]="data.status" (ngModelChange)="onFlagStatusChanged($event, data.id)" (click)="$event.stopPropagation()"></nz-switch>
           </td>
         </tr>
       </tbody>

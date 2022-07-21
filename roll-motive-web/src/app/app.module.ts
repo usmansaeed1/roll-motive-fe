@@ -13,7 +13,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FeatureFlagsListComponent } from './list/list.component';
-import { FlagDetailComponent } from './flag-detail/flag-detail.component';
+import { DetailComponent } from './detail/detail.component';
 import { DateAsAgoPipe } from './pipes/date-as-ago.pipe';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -32,7 +32,7 @@ import { CustomHttpParamCodec } from './services/custom-http-param-codec';
   declarations: [
     AppComponent,
     FeatureFlagsListComponent,
-    FlagDetailComponent,
+    DetailComponent,
     DateAsAgoPipe,
     CreateFeatureFlagComponent,
   ],

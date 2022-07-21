@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FeatureFlagsListComponent } from './list/list.component';
-import { FlagDetailComponent } from './flag-detail/flag-detail.component'
+import { DetailComponent } from './detail/detail.component'
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'flag-detail',
-    component: FlagDetailComponent
+    component: DetailComponent
   },
 ];
 
