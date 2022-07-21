@@ -1,22 +1,22 @@
 <main>
   <header class="filters">
     <nz-input-group [nzSuffix]="suffixIconSearch" class="search-input">
-      <input type="text" nz-input placeholder="Search by Name" />
+      <input type="text" nz-input placeholder="Search by Name" [ngModel]="searchQuery" (ngModelChange)="onSearchChanged($event)" />
     </nz-input-group>
     <ng-template #suffixIconSearch>
       <i nz-icon nzType="search"></i>
     </ng-template>
-    <button nz-button nzType="primary" class="create-btn">Create Flag</button>
+    <button nz-button nzType="primary" class="create-btn" (click)="createFlag.show()">Create Flag</button>
   </header>
 
   <div class="content">
-    <nz-table #rowSelectionTable nzShowPagination [nzData]="flags">
+    <nz-table #rowSelectionTable nzShowPagination [nzData]="filteredFlags">
       <thead>
         <tr>
-          <th>Name</th>
+          <th [nzSortOrder]="null" (nzSortOrderChange)="sortByName($event)">Name</th>
           <th>Key</th>
-          <th>Created</th>
-          <th>Updated</th>
+          <th [nzSortOrder]="'descend'" (nzSortOrderChange)="sortByCreated($event)">Created</th>
+          <th [nzSortOrder]="null" (nzSortOrderChange)="sortByUpdated($event)">Updated</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -45,4 +45,6 @@
       </tbody>
     </nz-table>
   </div>
+
+  <create-feature-flag #createFlag></create-feature-flag>
 </main>

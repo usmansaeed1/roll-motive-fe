@@ -16,13 +16,17 @@ import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 import { FormsModule } from '@angular/forms';
+import { CreateFeatureFlagComponent } from './create-feature-flag/create-feature-flag.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FeatureFlagsListComponent,
+    CreateFeatureFlagComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     NzSwitchModule,
     FormsModule,
-    NzTagModule
+    NzTagModule,
+    NzModalModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
