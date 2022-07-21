@@ -8,6 +8,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,8 +20,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateFeatureFlagComponent } from './create-feature-flag/create-feature-flag.component';
 
 
@@ -46,7 +48,10 @@ import { CreateFeatureFlagComponent } from './create-feature-flag/create-feature
     NzSwitchModule,
     FormsModule,
     NzTagModule,
+    NzFormModule,
     NzModalModule,
+    ReactiveFormsModule,
+    NzSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

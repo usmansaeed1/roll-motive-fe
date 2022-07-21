@@ -1,7 +1,43 @@
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Create Feature Flag" nzOkText="Submit" nzCancelText="Cancel" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>
-    <p>Content one</p>
-    <p>Content two</p>
-    <p>Content three</p>
+    <form nz-form [formGroup]="formGroup">
+      <nz-form-control nzErrorTip="Name is a required field">
+        <nz-input-group>
+          <label>Name*</label>
+          <input type="text" nz-input formControlName="name" placeholder="Name" />
+        </nz-input-group>
+      </nz-form-control>
+
+      <nz-form-control nzErrorTip="Key is a required field">
+        <nz-input-group>
+          <label>Key*</label>
+          <input type="text" nz-input formControlName="key" placeholder="Use this key in your code. Must only contain letters, numbers, ., - or _." />
+        </nz-input-group>
+      </nz-form-control>
+
+      <nz-form-control nzErrorTip="Description cannot be more than 100 characters long">
+        <nz-input-group>
+          <label>Description</label>
+          <input type="text" nz-input formControlName="description" placeholder="Feature Flag Description" />
+        </nz-input-group>
+      </nz-form-control>
+
+      <nz-form-control nzErrorTip="Description cannot be more than 100 characters long">
+        <nz-input-group>
+          <label>Type*</label>
+          <nz-select formControlName="type">
+            <nz-option nzValue="boolean" nzLabel="Boolean"></nz-option>
+            <!-- <nz-option nzValue="string" nzLabel="String"></nz-option> -->
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+
+      <nz-form-control *ngIf="formGroup.controls['type'].value === 'boolean'" nzErrorTip="Default Value is required">
+        <nz-input-group>
+          <label>Default value*</label>
+          <div><nz-switch formControlName="status"></nz-switch></div>
+        </nz-input-group>
+      </nz-form-control>
+    </form>
   </ng-container>
 </nz-modal>
