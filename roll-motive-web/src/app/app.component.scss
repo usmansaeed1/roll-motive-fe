@@ -30,4 +30,12 @@ $header-height: 50px;
 
 .layout {
   height: calc(100vh - $header-height);
+
+  .sidebar {
+    padding: 20px;
+
+    .project-select {
+      min-width: 210px;
+    }    
+  }
 }
