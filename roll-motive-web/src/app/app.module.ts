@@ -24,6 +24,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateFeatureFlagComponent } from './create-feature-flag/create-feature-flag.component';
+import { ServerApi } from './services/server-api';
+import { CustomHttpParamCodec } from './services/custom-http-param-codec';
 
 
 @NgModule({
@@ -53,7 +55,7 @@ import { CreateFeatureFlagComponent } from './create-feature-flag/create-feature
     ReactiveFormsModule,
     NzSelectModule,
   ],
-  providers: [],
+  providers: [ServerApi, CustomHttpParamCodec],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
