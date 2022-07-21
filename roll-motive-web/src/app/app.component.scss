@@ -1,6 +1,8 @@
+$header-height: 50px;
+
 .header {
   color: white;
-  height: 70px;
+  height: $header-height;
   display: flex;
   align-items: center;
 
@@ -27,5 +29,5 @@
 }
 
 .layout {
-  height: calc(100vh - 50px);
+  height: calc(100vh - $header-height);
 }

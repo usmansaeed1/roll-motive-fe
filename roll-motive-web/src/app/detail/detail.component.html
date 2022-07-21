@@ -2,13 +2,14 @@
   <div class="summary">
     <div>
       <code class="flag-key">{{flagDetail.key}}</code>
+      <div *ngIf="flagDetail.description" class="description-text">{{flagDetail.description}}</div>
       <h2>Targeting</h2>
       <span class="default-text">Default Value:</span>
       <nz-switch [(ngModel)]="flagDetail.status" (ngModelChange)="onFlagStatusChanged($event)" nzCheckedChildren="TRUE" nzUnCheckedChildren="FALSE"></nz-switch>
       <span class="updated-text">Updated {{flagDetail.updatedAt | dateAsAgo}}</span>
 
-      <div class="tags-container">
-        <nz-tag *ngIf="flagDetail.tag">{{flagDetail.tag}}</nz-tag>
+      <div class="tags-container" *ngIf="flagDetail.tag">
+        <nz-tag>{{flagDetail.tag}}</nz-tag>
       </div>
     </div>
 

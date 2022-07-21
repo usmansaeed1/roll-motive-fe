@@ -38,12 +38,13 @@ export class FeatureFlagsListComponent implements OnInit {
       name: `Feature flag ${index}`,
       key: `feature_flag_${index}`,
       targeting: index % 3 === 0,
-      createdAt: new Date(index * 100000),
+      createdAt: new Date(1658444984000 - (86400000 * index)),
       createdBy: 'Usman Saeed',
       updatedAt: new Date(),
       updatedBy: 'Usman',
       status: index % 2 === 0,
       tag: index % 2 === 0 ? 'compliance' : 'safety',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id arcu lacinia erat aliquam dignissim vitae vel ligula. Nulla pulvinar sapien vel faucibus dictum.',
     }));
     this.filteredFlags = [...this.flags];
     this.sortByCreated('descend');
