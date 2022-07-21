@@ -3,13 +3,71 @@
     <div>
       <code class="flag-key">{{flagDetail.key}}</code>
       <h2>Targeting</h2>
-      <nz-switch [(ngModel)]="flagDetail.status" (ngModelChange)="onFlagStatusChanged($event)" nzCheckedChildren="ON" nzUnCheckedChildren="OFF"></nz-switch>
+      <span class="default-text">Default Value:</span>
+      <nz-switch [(ngModel)]="flagDetail.status" (ngModelChange)="onFlagStatusChanged($event)" nzCheckedChildren="TRUE" nzUnCheckedChildren="FALSE"></nz-switch>
       <span class="updated-text">Updated {{flagDetail.updatedAt | dateAsAgo}}</span>
+
+      <div class="tags-container">
+        <nz-tag *ngIf="flagDetail.tag">{{flagDetail.tag}}</nz-tag>
+      </div>
     </div>
 
     <div class="right-content">
       <div class="bold">Added by: {{flagDetail.createdBy}}</div>
       <div>{{flagDetail.createdAt | dateAsAgo}}</div>
+    </div>
+  </div>
+
+  <div class="rules">
+    <h3>Target users who match these rules</h3>
+
+    <div class="rule-card">
+      <div class="row">
+        <h4 style="display: inline-block; margin-top: 2px; min-width: 40px;">IF</h4>
+        <nz-select class="rule-attribute" [(ngModel)]="ruleAttribute">
+          <nz-option nzValue="company_id" nzLabel="company_id"></nz-option>
+          <nz-option nzValue="user_id" nzLabel="user_id"></nz-option>
+        </nz-select>
+
+        <nz-select class="rule-attribute" [(ngModel)]="ruleRelation">
+          <nz-option nzValue="is_one_of" nzLabel="is one of"></nz-option>
+        </nz-select>
+
+        <div class="tag-container">
+          <nz-tag
+            *ngFor="let tag of tags; let i = index"
+            nzMode="closeable"
+            (nzOnClose)="handleClose(tag)"
+          >
+            {{ sliceTagName(tag) }}
+          </nz-tag>
+          <nz-tag *ngIf="!inputVisible" class="editable-tag" nzNoAnimation (click)="showInput()">
+            <i nz-icon nzType="plus"></i>
+            Add ID
+          </nz-tag>
+          <input
+            #inputElement
+            nz-input
+            nzSize="small"
+            *ngIf="inputVisible"
+            type="text"
+            [(ngModel)]="inputValue"
+            style="width: 78px;"
+            (blur)="handleInputConfirm()"
+            (keydown.enter)="handleInputConfirm()"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <h4 style="display: inline-block; margin-top: 2px; min-width: 40px;">Serve</h4>
+
+        <nz-select class="rule-attribute" [(ngModel)]="ruleValue">
+          <nz-option [nzValue]="true" nzLabel="True"></nz-option>
+          <nz-option [nzValue]="false" nzLabel="False"></nz-option>
+        </nz-select>
+      </div>
+
     </div>
   </div>
 </div>
