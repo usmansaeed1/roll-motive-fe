@@ -12,6 +12,10 @@ export class DetailComponent implements OnInit {
   public flagDetail: IFeatureFlag;
   public ruleAttribute: string = 'company_id';
   public ruleRelation: string = 'is_one_of';
+  public defaultRule: string = 'true';
+  public defaultRulePercentTrue: number = 0;
+  public defaultRulePercentFalse: number = 100;
+  public defaultRulePercentTrueBarPx: number = 0;
   public ruleValue: boolean = true;
   @ViewChild('inputElement', { static: false }) inputElement?: ElementRef;
 
@@ -25,19 +29,6 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.flagDetail = {
-    //   id: 2,
-    //   name: `Compliance Adverse Driving Conditions`,
-    //   key: `compliance-adverse-driving-conditions`,
-    //   targeting: true,
-    //   createdAt: new Date('2022-04-10T20:52:05.549Z'),
-    //   createdBy: 'Anas Siddiqi',
-    //   updatedAt: new Date('2022-06-20T20:52:05.549Z'),
-    //   updatedBy: 'Usman Saeed',
-    //   status: true,
-    //   tag: 'compliance',
-    // };
-
     this.headerService.updateHeaderText(this.flagDetail.name);
   }
 
@@ -68,5 +59,15 @@ export class DetailComponent implements OnInit {
     }
     this.inputValue = '';
     this.inputVisible = false;
+  }
+
+  onChangePercentTrue(value: number): void {
+    this.defaultRulePercentFalse = 100 - value;
+    this.defaultRulePercentTrueBarPx = this.defaultRulePercentTrue * 5;
+  }
+
+  onChangePercentFalse(value: number): void {
+    this.defaultRulePercentTrue = 100 - value;
+    this.defaultRulePercentTrueBarPx = this.defaultRulePercentTrue * 5;
   }
 }

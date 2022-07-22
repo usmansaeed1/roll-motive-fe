@@ -4,8 +4,7 @@
       <code class="flag-key">{{flagDetail.key}}</code>
       <div *ngIf="flagDetail.description" class="description-text">{{flagDetail.description}}</div>
       <h2>Targeting</h2>
-      <span class="default-text">Default Value:</span>
-      <nz-switch [(ngModel)]="flagDetail.status" (ngModelChange)="onFlagStatusChanged($event)" nzCheckedChildren="TRUE" nzUnCheckedChildren="FALSE"></nz-switch>
+      <nz-switch [(ngModel)]="flagDetail.status" (ngModelChange)="onFlagStatusChanged($event)" nzCheckedChildren="ON" nzUnCheckedChildren="OFF"></nz-switch>
       <span class="updated-text">Updated {{flagDetail.updatedAt | dateAsAgo}}</span>
 
       <div class="tags-container" *ngIf="flagDetail.tag">
@@ -24,7 +23,7 @@
 
     <div class="rule-card">
       <div class="row">
-        <h4 style="display: inline-block; margin-top: 2px; min-width: 40px;">IF</h4>
+        <h4 style="display: inline-block; margin-top: 4px; min-width: 40px;">IF</h4>
         <nz-select class="rule-attribute" [(ngModel)]="ruleAttribute">
           <nz-option nzValue="company_id" nzLabel="company_id"></nz-option>
           <nz-option nzValue="user_id" nzLabel="user_id"></nz-option>
@@ -70,5 +69,40 @@
       </div>
 
     </div>
+
+
+    <h3>Default Rule</h3>
+    <div class="rule-card">
+      <div class="row">
+        <h4 style="display: inline-block; margin-top: 5px; min-width: 40px;">Serve</h4>
+        <nz-select class="rule-attribute" [(ngModel)]="defaultRule">
+          <nz-option nzValue="true" nzLabel="True"></nz-option>
+          <nz-option nzValue="false" nzLabel="False"></nz-option>
+          <nz-option nzValue="percent" nzLabel="Percentage Rollout"></nz-option>
+        </nz-select>
+      </div>
+
+      <div class="row" *ngIf="defaultRule === 'percent'">
+        <div class="bar-container">
+          <span class="bar-true" [style.width]="defaultRulePercentTrueBarPx+'px'"></span>
+          <span class="bar-false"></span>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="defaultRule === 'percent'">
+        <div class="true-indicator"></div>
+        <h4 style="display: inline-block; margin-top: 5px; min-width: 40px;">True</h4>
+        <nz-slider style="width: 500px" [nzMin]="0" [nzMax]="100" [(ngModel)]="defaultRulePercentTrue" (ngModelChange)="onChangePercentTrue($event)"></nz-slider>
+        <h4 style="display: inline-block; margin-top: 5px; min-width: 40px; margin-left: 5px;">{{defaultRulePercentTrue}}%</h4>
+      </div>
+
+      <div class="row" *ngIf="defaultRule === 'percent'">
+        <div class="false-indicator"></div>
+        <h4 style="display: inline-block; margin-top: 5px; min-width: 40px;">False</h4>
+        <nz-slider style="width: 500px" [nzMin]="0" [nzMax]="100" [(ngModel)]="defaultRulePercentFalse" (ngModelChange)="onChangePercentFalse($event)"></nz-slider>
+        <h4 style="display: inline-block; margin-top: 5px; min-width: 40px; margin-left: 5px;">{{defaultRulePercentFalse}}%</h4>
+      </div>
+    </div>
+
   </div>
 </div>
