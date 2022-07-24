@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-Cookies.defaults.domain = 'localhost:4200';
+// Cookies.defaults./domain = 'localhost:4200';
 
 export enum CookieKey {
   // App Wide
@@ -40,8 +40,9 @@ export function getCookie(cookieName: CookieKey) {
   return Cookies.get(cookieName);
 }
 
-export function setCookie(...args): string {
-  return Cookies.set(...args);
+export function setCookie(...args: string[]): string {
+  return '';
+  // return Cookies.set(...args);p
 }
 
 /**

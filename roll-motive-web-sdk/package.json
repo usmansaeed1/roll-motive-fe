@@ -1,0 +1,20 @@
+{
+  "name": "roll-motive-web-sdk",
+  "version": "1.0.0",
+  "description": "Roll Motive Web SDK",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usmansaeed1/roll-motive-fe.git"
+  },
+  "author": "Usman Saeed <maan.usman19@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/usmansaeed1/roll-motive-fe/issues"
+  },
+  "homepage": "https://github.com/usmansaeed1/roll-motive-fe#readme"
+}

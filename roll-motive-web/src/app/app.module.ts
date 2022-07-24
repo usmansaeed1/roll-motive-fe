@@ -21,12 +21,23 @@ import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import {
+  StepBackwardOutline,
+  CaretLeftOutline,
+  SettingOutline
+} from '@ant-design/icons-angular/icons';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateFeatureFlagComponent } from './create-feature-flag/create-feature-flag.component';
 import { ServerApi } from './services/server-api';
 import { CustomHttpParamCodec } from './services/custom-http-param-codec';
+import { IconDefinition } from '@ant-design/icons-angular';
 
+const icons: IconDefinition[] = [
+  StepBackwardOutline,
+  CaretLeftOutline,
+  SettingOutline
+];
 
 @NgModule({
   declarations: [
@@ -37,6 +48,7 @@ import { CustomHttpParamCodec } from './services/custom-http-param-codec';
     CreateFeatureFlagComponent,
   ],
   imports: [
+    NzIconModule.forChild(icons),
     BrowserModule,
     CommonModule,
     AppRoutingModule,
