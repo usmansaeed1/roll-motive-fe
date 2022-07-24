@@ -1,4 +1,10 @@
+$true-color: #38D9A9;
+$false-color: #228BE6;
+
 .main {
+  height: 100%;
+  overflow: auto;
+
   .summary {
     background-color: #FFFFFF;
     display: flex;
@@ -54,9 +60,11 @@
       border: 1px solid #E6E6E6;
       padding: 20px;
       background-color: #FFFFFF;
+      margin-bottom: 20px;
 
       .row {
         display: flex;
+        align-items: center;
         width: 100%;
 
         &:not(:first-child) {
@@ -64,7 +72,7 @@
         }
 
         .rule-attribute {
-          min-width: 140px;
+          min-width: 170px;
           margin-left: 30px;
         }
 
@@ -82,6 +90,46 @@
             border-style: dashed;
             cursor: pointer;
           }
+        }
+
+        .bar-container {
+          width: 506px;
+          height: 18px;
+          padding: 2px 2px;
+          border: 1px solid #d9d9d9;
+          display: flex;
+          margin-left: 58px;
+          margin-top: 10px;
+
+          .bar-true {
+            display: block;
+            background-color: $true-color;
+            width: 100px;
+            height: 12px;
+          }
+
+          .bar-false {
+            display: block;
+            background-color: $false-color;
+            height: 12px;
+            flex-grow: 1;
+          }
+        }
+
+        .true-indicator {
+          display: block;
+          width: 10px;
+          height: 10px;
+          margin: 0 10px 2px 0;
+          background-color: $true-color;
+        }
+
+        .false-indicator {
+          display: block;
+          width: 10px;
+          height: 10px;
+          margin: 0 10px 2px 0;
+          background-color: $false-color;
         }
       }
     }

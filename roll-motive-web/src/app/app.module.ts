@@ -9,6 +9,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -66,6 +67,7 @@ const icons: IconDefinition[] = [
     NzModalModule,
     ReactiveFormsModule,
     NzSelectModule,
+    NzSliderModule,
   ],
   providers: [ServerApi, CustomHttpParamCodec],
   bootstrap: [AppComponent]
