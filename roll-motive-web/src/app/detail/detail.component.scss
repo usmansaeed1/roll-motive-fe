@@ -44,7 +44,10 @@ $false-color: #228BE6;
     .right-content {
       text-align: end;
       height: fit-content;
-      margin-top: 80px;
+
+      .save-button {
+        margin-bottom: 40px;
+      }
 
       .bold {
         font-weight: 600;

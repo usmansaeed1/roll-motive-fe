@@ -64,6 +64,14 @@ export class DetailService {
     ;
   }
 
+  public put(id: string, data: any) {
+    const headers = new Map();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Access-Control-Allow-Origin', '*');
+
+    return this.api.put(`feature_flags/${id}`, data);
+  }
+
   private transformData(res: any): IFeatureFlag {
     // res = {"feature_flag":{"id":1,"name":"Compliance Hub","description":"Compliance hub","key":"compliance-hub","data_type":"boolean","status":"active","tags":["compliance","beta"],"default_rule":{"type":"constant","value":true}}};
 

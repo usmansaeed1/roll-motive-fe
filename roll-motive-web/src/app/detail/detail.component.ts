@@ -30,7 +30,7 @@ export class DetailComponent implements OnInit {
   public flagId: string = '';
   @ViewChild('inputElement', { static: false }) inputElement?: ElementRef;
 
-  tags = ['160', '140', '424790'];
+  tags: string[] = [];
   inputVisible = false;
   inputValue = '';
 
@@ -88,5 +88,32 @@ export class DetailComponent implements OnInit {
   onChangePercentFalse(value: number): void {
     this.defaultRulePercentTrue = 100 - value;
     this.defaultRulePercentTrueBarPx = this.defaultRulePercentTrue * 5;
+  }
+
+  save() {
+    const payload: any = {
+      status: this.flagDetail.status,
+      rules: [{
+        key: this.ruleAttribute,
+        operator: 'eq',
+        type: 'boolean',
+        values: this.tags,
+        result: this.ruleValue,
+      }],
+      default_rule: {
+        type: this.defaultRule === 'percent' ? 'percentage' : 'constant',
+        value: this.defaultRule === 'percent' ? true : this.defaultRule,
+      }
+    };
+
+    if (this.defaultRule === 'percent') {
+      payload.default_rule.distribution = this.defaultRulePercentTrue;
+      payload.default_rule.key = 'company_id';
+    }
+    console.log(payload);
+
+    this.service.put(this.flagId, payload).subscribe((response: any) => {
+      console.log(response);
+    });
   }
 }
