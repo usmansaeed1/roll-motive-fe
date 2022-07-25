@@ -7,8 +7,8 @@
       <nz-switch [(ngModel)]="flagDetail.status" (ngModelChange)="onFlagStatusChanged($event)" nzCheckedChildren="ON" nzUnCheckedChildren="OFF"></nz-switch>
       <span class="updated-text">Updated {{flagDetail.updatedAt | dateAsAgo}}</span>
 
-      <div class="tags-container" *ngIf="flagDetail.tag">
-        <nz-tag>{{flagDetail.tag}}</nz-tag>
+      <div class="tags-container" *ngIf="flagDetail.tags">
+        <nz-tag *ngFor="let tag of flagDetail.tags">{{tag}}</nz-tag>
       </div>
     </div>
 
@@ -42,7 +42,6 @@
             {{ sliceTagName(tag) }}
           </nz-tag>
           <nz-tag *ngIf="!inputVisible" class="editable-tag" nzNoAnimation (click)="showInput()">
-            <i nz-icon nzType="plus"></i>
             Add ID
           </nz-tag>
           <input

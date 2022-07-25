@@ -10,6 +10,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -53,6 +54,7 @@ const icons: IconDefinition[] = [
     BrowserModule,
     CommonModule,
     AppRoutingModule,
+    HttpClientModule,
     NzButtonModule,
     NzLayoutModule,
     NzTableModule,

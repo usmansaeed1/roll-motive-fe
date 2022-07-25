@@ -1,15 +1,25 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HeaderService } from '../header.service';
-import { IFeatureFlag } from '../list/list.component';
+import { DetailService, IFeatureFlag } from './detail.service';
 
 @Component({
   selector: 'flag-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  styleUrls: ['./detail.component.scss'],
+  providers: [DetailService],
 })
 export class DetailComponent implements OnInit {
-  public flagDetail: IFeatureFlag;
+  public flagDetail: IFeatureFlag = {
+    id: 0,
+    name: '',
+    status: false,
+    key: '',
+    createdAt: new Date(),
+    createdBy: '',
+    updatedAt: new Date(),
+    updatedBy: '',
+  };
   public ruleAttribute: string = 'company_id';
   public ruleRelation: string = 'is_one_of';
   public defaultRule: string = 'true';
@@ -17,19 +27,28 @@ export class DetailComponent implements OnInit {
   public defaultRulePercentFalse: number = 100;
   public defaultRulePercentTrueBarPx: number = 0;
   public ruleValue: boolean = true;
+  public flagId: string = '';
   @ViewChild('inputElement', { static: false }) inputElement?: ElementRef;
 
   tags = ['160', '140', '424790'];
   inputVisible = false;
   inputValue = '';
 
-  constructor(private headerService: HeaderService, private activatedRoute: ActivatedRoute,) {
+  constructor(
+    private headerService: HeaderService,
+    private activatedRoute: ActivatedRoute,
+    private service: DetailService,
+    ) {
     const params: any = activatedRoute.snapshot.params;
-    this.flagDetail = params;
+    this.flagId = params.id;
   }
 
   ngOnInit(): void {
-    this.headerService.updateHeaderText(this.flagDetail.name);
+    this.service.get(this.flagId).subscribe((flagDetail: any) => {
+      console.log(flagDetail);
+      this.flagDetail = flagDetail;
+      this.headerService.updateHeaderText(this.flagDetail.name);
+    });
   }
 
   public onFlagStatusChanged(value: boolean) {

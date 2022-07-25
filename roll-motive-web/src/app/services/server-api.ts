@@ -13,7 +13,8 @@ import { getCookie, setCookie, CookieKey } from './cookies';
 
 import { tap } from 'rxjs/operators';
 
-const API_URL = 'http://p.k2labs.org';
+const API_URL = 'http://3581-119-155-51-81.ngrok.io';
+// const API_URL = 'http://p.k2labs.org';
 
 export const W2_API_URL = `${API_URL}/api/w2`;
 export const W2_WS_URL = `${API_URL.replace('http', 'ws')}/api/w2`;

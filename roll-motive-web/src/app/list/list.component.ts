@@ -1,25 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderService } from '../header.service';
+import { ListService, IFeatureFlag } from './list.service';
 
-export interface IFeatureFlag {
-  id: number;
-  name: string;
-  key: string;
-  description?: string;
-  status: boolean;
-  targeting: boolean;
-  createdAt: Date;
-  createdBy: string;
-  updatedAt: Date;
-  updatedBy: string;
-  tag?: string;
-}
 
 @Component({
   selector: 'feature-flags-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
+  providers: [ListService],
 })
 
 export class FeatureFlagsListComponent implements OnInit {
@@ -29,25 +18,20 @@ export class FeatureFlagsListComponent implements OnInit {
 
   public searchQuery: string = '';
   
-  constructor(private router: Router, private headerService: HeaderService) { }
+  constructor(
+    private router: Router,
+    private headerService: HeaderService,
+    private service: ListService,
+  ) { }
 
   ngOnInit(): void {
     this.headerService.updateHeaderText('');
-    this.flags = new Array(100).fill(0).map((_, index) => ({
-      id: index,
-      name: `Feature flag ${index}`,
-      key: `feature_flag_${index}`,
-      targeting: index % 3 === 0,
-      createdAt: new Date(1658444984000 - (86400000 * index)),
-      createdBy: 'Usman Saeed',
-      updatedAt: new Date(),
-      updatedBy: 'Usman',
-      status: index % 2 === 0,
-      tag: index % 2 === 0 ? 'compliance' : 'safety',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id arcu lacinia erat aliquam dignissim vitae vel ligula. Nulla pulvinar sapien vel faucibus dictum.',
-    }));
-    this.filteredFlags = [...this.flags];
-    this.sortByCreated('descend');
+
+    this.service.get({}).subscribe((featureFlags: IFeatureFlag[]) => {
+      this.flags = featureFlags;
+      this.filteredFlags = [...this.flags];
+      this.sortByCreated('descend');
+    });
   }
 
   public onSearchChanged(text: string) {
@@ -59,7 +43,7 @@ export class FeatureFlagsListComponent implements OnInit {
   }
 
   public navigateToDetail(featureFlag: IFeatureFlag) {
-    this.router.navigate(['flag-detail', featureFlag]);
+    this.router.navigate(['flag-detail', featureFlag.id]);
   }
   
   public sortByCreated(direction: string | null) {

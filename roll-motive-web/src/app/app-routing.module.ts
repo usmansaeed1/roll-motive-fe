@@ -9,7 +9,7 @@ const routes: Routes = [
     component: FeatureFlagsListComponent,
   },
   {
-    path: 'flag-detail',
+    path: 'flag-detail/:id',
     component: DetailComponent
   },
 ];
