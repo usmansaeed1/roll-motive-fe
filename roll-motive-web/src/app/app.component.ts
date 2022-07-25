@@ -10,7 +10,7 @@ import { HeaderService } from './header.service';
 export class AppComponent {
   title = 'roll-motive-web';
   public headerText: string = '';
-  public selectedProject: string = 'default_project';
+  public selectedProject: string = 'preview';
 
   constructor(private router: Router, private headerService: HeaderService, private cdr: ChangeDetectorRef,) {
 

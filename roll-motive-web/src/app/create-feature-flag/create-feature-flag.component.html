@@ -25,17 +25,26 @@
       <nz-form-control nzErrorTip="Description cannot be more than 100 characters long">
         <nz-input-group>
           <label>Type*</label>
-          <nz-select formControlName="type">
+          <nz-select formControlName="data_type">
             <nz-option nzValue="boolean" nzLabel="Boolean"></nz-option>
             <!-- <nz-option nzValue="string" nzLabel="String"></nz-option> -->
           </nz-select>
         </nz-input-group>
       </nz-form-control>
 
-      <nz-form-control *ngIf="formGroup.controls['type'].value === 'boolean'" nzErrorTip="Default Value is required">
+      <nz-form-control>
+        <nz-input-group>
+          <label>Tags</label>
+          <nz-select formControlName="tags" nzMode="tags" nzPlaceHolder="Please select">
+            <nz-option *ngFor="let option of tagsOptions" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+
+      <nz-form-control *ngIf="formGroup.controls['data_type'].value === 'boolean'" nzErrorTip="Default Value is required">
         <nz-input-group>
           <label>Default value*</label>
-          <div><nz-switch formControlName="status"></nz-switch></div>
+          <div><nz-switch formControlName="default_rule"></nz-switch></div>
         </nz-input-group>
       </nz-form-control>
     </form>
