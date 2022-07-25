@@ -10,21 +10,22 @@
   </header>
 
   <div class="content">
-    <nz-table #rowSelectionTable nzShowPagination [nzData]="filteredFlags">
+    <nz-table #rowSelectionTable nzShowPagination [nzData]="filteredFlags" [nzLoading]="loading" [nzNoResult]="noResultFound">
       <thead>
         <tr>
           <th [nzSortOrder]="null" (nzSortOrderChange)="sortByName($event)">Name</th>
           <th>Key</th>
           <th [nzSortOrder]="'descend'" (nzSortOrderChange)="sortByCreated($event)">Created</th>
           <th [nzSortOrder]="null" (nzSortOrderChange)="sortByUpdated($event)">Updated</th>
-          <th>Status</th>
+          <th>Targeting</th>
+          <th>Default Rule</th>
         </tr>
       </thead>
       <tbody>
         <tr class="data-row" *ngFor="let data of rowSelectionTable.data" (click)="navigateToDetail(data)">
           <td>{{ data.name }}
-            <div>
-              <nz-tag *ngIf="data.tag">{{data.tag}}</nz-tag>
+            <div *ngIf="data.tags">
+              <nz-tag *ngFor="let tag of data.tags">{{tag}}</nz-tag>
             </div>
           </td>
           <td>
@@ -41,10 +42,24 @@
           <td>
             <nz-switch [(ngModel)]="data.status" (ngModelChange)="onFlagStatusChanged($event, data.id)" (click)="$event.stopPropagation()"></nz-switch>
           </td>
+          <td>
+            <span *ngIf="data.defaultRule.type === 'constant'">
+              {{data.defaultRule.value}} for 100% users
+            </span>
+
+            <span *ngIf="data.defaultRule.type === 'percentage'">
+              Percentage Rollout:<br>
+              Value: {{data.defaultRule.value}} - {{data.defaultRule.distribution}}%<br>
+              Key: {{data.defaultRule.key}}
+            </span>
+          </td>
         </tr>
       </tbody>
     </nz-table>
+    <ng-template #noResultFound>
+      <h3>No Result Found</h3>
+    </ng-template>
   </div>
 
-  <create-feature-flag #createFlag></create-feature-flag>
+  <create-feature-flag #createFlag (onFlagAdded)="flagAdded()"></create-feature-flag>
 </main>

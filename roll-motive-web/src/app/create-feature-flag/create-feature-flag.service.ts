@@ -5,6 +5,7 @@ import { Params } from '@angular/router';
 
 import { ServerApi } from '../services/server-api';
 import forOwn from 'lodash/forOwn';
+import { Observable } from 'rxjs';
 
 export interface IFeatureFlag {
   id: number;
@@ -17,8 +18,7 @@ export interface IFeatureFlag {
   createdBy: string;
   updatedAt: Date;
   updatedBy: string;
-  tags: string[];
-  defaultRule?: any;
+  tag?: string;
 }
 
 interface IServerFlag {
@@ -29,7 +29,7 @@ interface IServerFlag {
   key: string;
   data_type: string;
   tags: string[];
-  default_rule: any;
+  default_rule: boolean;
 }
 
 
@@ -42,24 +42,15 @@ function objectToMap(obj: any) {
 
 
 @Injectable()
-export class ListService {
-  constructor(@Inject(ServerApi) private api: any) {}
+export class CreateFeatureFlagService {
+  constructor(@Inject(ServerApi) private api: ServerApi) {}
 
-  public get(params: Params) {
-    params = objectToMap(params);
-    if (!params) params = new Map();
-
+  public save(flag: any): Observable<any> {
     const headers = new Map();
     headers.set('Content-Type', 'application/json');
     headers.set('Access-Control-Allow-Origin', '*');
 
-    return this.api
-      .get('feature_flags', params, 'w2', headers)
-      .pipe(
-        map((response: any) => response.body),
-        map(this.transformData.bind(this)),
-      )
-    ;
+    return this.api.post('feature_flags', flag, null, 'w2')
   }
 
   private transformData(res: any): IFeatureFlag[] {
@@ -75,17 +66,10 @@ export class ListService {
         createdAt: new Date(1658444984000 - (86400000 * index)),  // MOCKED
         createdBy: 'Usman Saeed',  // MOCKED
         updatedAt: new Date(),  // MOCKED
-        updatedBy: 'Usman Saeed',  // MOCKED
+        updatedBy: 'Usman',  // MOCKED
         status: flagDetail.status,
-        tags: flagDetail.tags,
+        tag: flagDetail.tags[0],
         description: flagDetail.description,
-        defaultRule: {
-          type: flagDetail.default_rule.type,
-          value: flagDetail.default_rule.value,
-          percentage: flagDetail.default_rule.percentage,
-          distribution: flagDetail.default_rule.distribution,
-          key: flagDetail.default_rule.key,
-        }
       };
     });
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { HeaderService } from '../header.service';
 import { ListService, IFeatureFlag } from './list.service';
 
@@ -22,16 +23,30 @@ export class FeatureFlagsListComponent implements OnInit {
     private router: Router,
     private headerService: HeaderService,
     private service: ListService,
+    private message: NzMessageService,
   ) { }
 
   ngOnInit(): void {
     this.headerService.updateHeaderText('');
+    this.fetchFlags();
+  }
+  
 
+  public fetchFlags(): void {
+    this.loading = true;
     this.service.get({}).subscribe((featureFlags: IFeatureFlag[]) => {
+      this.loading = false;
       this.flags = featureFlags;
       this.filteredFlags = [...this.flags];
       this.sortByCreated('descend');
+    }, () => {
+      this.loading = false;
     });
+  }
+
+  public flagAdded(): void {
+    this.message.success('FLag added successfully!');
+    this.fetchFlags();
   }
 
   public onSearchChanged(text: string) {
